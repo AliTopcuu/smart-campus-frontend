@@ -18,7 +18,6 @@ import {
   Typography,
   Paper,
   Divider,
-  alpha,
 } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerSchema } from '@/utils/validationSchemas';
@@ -72,78 +71,83 @@ export const RegisterPage = () => {
 
   const commonTextFieldStyles = {
     '& .MuiOutlinedInput-root': {
-      borderRadius: 2,
-      backgroundColor: alpha('#1f2937', 0.8),
-      color: '#f3f4f6',
+      borderRadius: 3,
+      backgroundColor: 'rgba(51, 65, 85, 0.6)',
+      color: '#f1f5f9',
       transition: 'all 0.3s ease',
       '& fieldset': {
-        borderColor: 'rgba(75, 85, 99, 0.5)',
+        borderColor: 'rgba(148, 163, 184, 0.3)',
+        borderWidth: 2,
       },
       '&:hover': {
-        backgroundColor: '#1f2937',
+        backgroundColor: 'rgba(51, 65, 85, 0.8)',
         transform: 'translateY(-2px)',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+        boxShadow: '0 4px 12px rgba(59, 130, 246, 0.2)',
         '& fieldset': {
           borderColor: 'rgba(59, 130, 246, 0.5)',
         },
       },
       '&.Mui-focused': {
-        backgroundColor: '#1f2937',
+        backgroundColor: 'rgba(51, 65, 85, 0.8)',
         boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
         '& fieldset': {
           borderColor: '#3b82f6',
+          borderWidth: 2,
         },
       },
     },
     '& .MuiInputLabel-root': {
-      color: 'rgba(209, 213, 219, 0.7)',
+      color: 'rgba(226, 232, 240, 0.8)',
+      fontWeight: 500,
     },
     '& .MuiInputLabel-root.Mui-focused': {
-      color: '#3b82f6',
+      color: '#60a5fa',
     },
     '& .MuiFormHelperText-root': {
-      color: 'rgba(209, 213, 219, 0.6)',
+      color: 'rgba(226, 232, 240, 0.7)',
     },
   };
 
   const commonSelectStyles = {
     '& .MuiOutlinedInput-root': {
-      borderRadius: 2,
-      backgroundColor: alpha('#1f2937', 0.8),
-      color: '#f3f4f6',
+      borderRadius: 3,
+      backgroundColor: 'rgba(51, 65, 85, 0.6)',
+      color: '#f1f5f9',
       transition: 'all 0.3s ease',
       '& fieldset': {
-        borderColor: 'rgba(75, 85, 99, 0.5)',
+        borderColor: 'rgba(148, 163, 184, 0.3)',
+        borderWidth: 2,
       },
       '&:hover': {
-        backgroundColor: '#1f2937',
+        backgroundColor: 'rgba(51, 65, 85, 0.8)',
         transform: 'translateY(-2px)',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+        boxShadow: '0 4px 12px rgba(59, 130, 246, 0.2)',
         '& fieldset': {
-          borderColor: 'rgba(37, 99, 235, 0.5)',
+          borderColor: 'rgba(59, 130, 246, 0.5)',
         },
       },
       '&.Mui-focused': {
-        backgroundColor: '#1f2937',
-        boxShadow: '0 4px 12px rgba(37, 99, 235, 0.3)',
+        backgroundColor: 'rgba(51, 65, 85, 0.8)',
+        boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
         '& fieldset': {
-          borderColor: '#2563eb',
+          borderColor: '#3b82f6',
+          borderWidth: 2,
         },
       },
     },
     '& .MuiSelect-select': {
       backgroundColor: 'transparent !important',
-      color: '#f3f4f6',
+      color: '#f1f5f9',
     },
     '& .MuiSelect-icon': {
-      color: 'rgba(209, 213, 219, 0.7)',
+      color: 'rgba(226, 232, 240, 0.7)',
       transition: 'color 0.2s ease',
     },
     '&:hover .MuiSelect-icon': {
-      color: '#2563eb',
+      color: '#60a5fa',
     },
     '&.Mui-focused .MuiSelect-icon': {
-      color: '#2563eb',
+      color: '#60a5fa',
     },
   };
 
@@ -151,35 +155,42 @@ export const RegisterPage = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #064e3b 0%, #1e40af 50%, #3730a3 100%)',
+        background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1e293b 100%)',
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         py: 4,
         overflow: 'hidden',
-        '&::before': {
-          content: '""',
+      }}
+    >
+      {/* Gradient overlay */}
+      <Box
+        sx={{
           position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'radial-gradient(circle at 20% 50%, rgba(5, 150, 105, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(79, 70, 229, 0.1) 0%, transparent 50%)',
+          background: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 50%)',
           pointerEvents: 'none',
-        },
-      }}
-    >
-      <Container maxWidth="sm" sx={{ position: 'relative', zIndex: 1 }}>
+          zIndex: 1,
+        }}
+      />
+      <Container maxWidth="sm" sx={{ position: 'relative', zIndex: 2 }}>
         <Paper
-          elevation={24}
+          elevation={0}
           sx={{
-            borderRadius: 4,
+            borderRadius: 6,
             p: { xs: 3, sm: 5 },
-            background: 'rgba(17, 24, 39, 0.95)',
-            backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(75, 85, 99, 0.3)',
-            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)',
+            background: 'rgba(30, 41, 59, 0.95)',
+            backdropFilter: 'blur(40px)',
+            border: '1px solid rgba(148, 163, 184, 0.2)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05)',
+            transition: 'all 0.3s ease',
+            '&:hover': {
+              boxShadow: '0 12px 48px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08)',
+            },
           }}
         >
           <Stack spacing={4}>
@@ -189,12 +200,13 @@ export const RegisterPage = () => {
                 variant="h3"
                 fontWeight={800}
                 sx={{
-                  background: 'linear-gradient(135deg, #059669 0%, #2563eb 50%, #4f46e5 100%)',
+                  background: 'linear-gradient(135deg, #1e40af 0%, #059669 50%, #1e40af 100%)',
                   backgroundClip: 'text',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   mb: 1,
                   letterSpacing: '-0.02em',
+                  fontSize: { xs: '2rem', sm: '2.5rem' },
                 }}
               >
                 Hesap Oluştur
@@ -204,7 +216,7 @@ export const RegisterPage = () => {
                 sx={{ 
                   fontSize: '1.1rem', 
                   fontWeight: 500,
-                  color: 'rgba(209, 213, 219, 0.8)',
+                  color: 'rgba(226, 232, 240, 0.9)',
                 }}
               >
                 {appConfig.appName} ailesine katılın
@@ -277,7 +289,7 @@ export const RegisterPage = () => {
                 </Stack>
                 <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
                   <FormControl fullWidth error={Boolean(errors.role)}>
-                    <InputLabel id="role-label" sx={{ color: 'rgba(209, 213, 219, 0.7)' }}>
+                    <InputLabel id="role-label" sx={{ color: 'rgba(226, 232, 240, 0.8)', fontWeight: 500 }}>
                       Kullanıcı Tipi
                     </InputLabel>
                     <Controller
@@ -293,10 +305,12 @@ export const RegisterPage = () => {
                           MenuProps={{
                             PaperProps: {
                               sx: {
-                                backgroundColor: '#1f2937',
-                                color: '#f3f4f6',
+                                backgroundColor: 'rgba(30, 41, 59, 0.98)',
+                                color: '#f1f5f9',
+                                backdropFilter: 'blur(20px)',
+                                border: '1px solid rgba(148, 163, 184, 0.2)',
                                 '& .MuiMenuItem-root': {
-                                  color: '#f3f4f6',
+                                  color: '#f1f5f9',
                                   '&:hover': {
                                     backgroundColor: 'rgba(59, 130, 246, 0.2)',
                                   },
@@ -316,12 +330,12 @@ export const RegisterPage = () => {
                         </Select>
                       )}
                     />
-                    <FormHelperText sx={{ color: 'rgba(209, 213, 219, 0.6)' }}>
+                    <FormHelperText sx={{ color: 'rgba(226, 232, 240, 0.7)' }}>
                       {errors.role?.message}
                     </FormHelperText>
                   </FormControl>
                   <FormControl fullWidth error={Boolean(errors.department)}>
-                    <InputLabel id="department-label" sx={{ color: 'rgba(209, 213, 219, 0.7)' }}>
+                    <InputLabel id="department-label" sx={{ color: 'rgba(226, 232, 240, 0.8)', fontWeight: 500 }}>
                       Bölüm
                     </InputLabel>
                     <Controller
@@ -337,10 +351,12 @@ export const RegisterPage = () => {
                           MenuProps={{
                             PaperProps: {
                               sx: {
-                                backgroundColor: '#1f2937',
-                                color: '#f3f4f6',
+                                backgroundColor: 'rgba(30, 41, 59, 0.98)',
+                                color: '#f1f5f9',
+                                backdropFilter: 'blur(20px)',
+                                border: '1px solid rgba(148, 163, 184, 0.2)',
                                 '& .MuiMenuItem-root': {
-                                  color: '#f3f4f6',
+                                  color: '#f1f5f9',
                                   '&:hover': {
                                     backgroundColor: 'rgba(59, 130, 246, 0.2)',
                                   },
@@ -363,7 +379,7 @@ export const RegisterPage = () => {
                         </Select>
                       )}
                     />
-                    <FormHelperText sx={{ color: 'rgba(209, 213, 219, 0.6)' }}>
+                    <FormHelperText sx={{ color: 'rgba(226, 232, 240, 0.7)' }}>
                       {errors.department?.message}
                     </FormHelperText>
                   </FormControl>
@@ -397,9 +413,9 @@ export const RegisterPage = () => {
                           {...field}
                           checked={field.value}
                           sx={{
-                            color: '#2563eb',
+                            color: '#1e40af',
                             '&.Mui-checked': {
-                              color: '#4f46e5',
+                              color: '#059669',
                             },
                           }}
                         />
@@ -408,14 +424,14 @@ export const RegisterPage = () => {
                         <Typography 
                           component="span"
                           sx={{
-                            color: 'rgba(209, 213, 219, 0.9)',
+                            color: 'rgba(226, 232, 240, 0.9)',
                           }}
                         >
                           Kullanım şartlarını okudum ve kabul ediyorum.
                         </Typography>
                       }
                     />
-                    <FormHelperText sx={{ color: 'rgba(209, 213, 219, 0.6)' }}>
+                    <FormHelperText sx={{ color: 'rgba(226, 232, 240, 0.7)' }}>
                       {errors.termsAccepted?.message}
                     </FormHelperText>
                   </FormControl>
@@ -429,24 +445,25 @@ export const RegisterPage = () => {
                 fullWidth
                 disabled={isSubmitting}
                 sx={{
-                  background: 'linear-gradient(135deg, #059669 0%, #2563eb 50%, #4f46e5 100%)',
-                  borderRadius: 2,
+                  background: 'linear-gradient(135deg, #1e40af 0%, #059669 50%, #1e40af 100%)',
+                  borderRadius: 3,
                   py: 1.5,
                   fontSize: '1rem',
                   fontWeight: 700,
                   textTransform: 'none',
-                  boxShadow: '0 4px 14px rgba(37, 99, 235, 0.4)',
+                  color: 'white',
+                  boxShadow: '0 4px 14px rgba(30, 58, 138, 0.3)',
                   transition: 'all 0.3s ease',
                   '&:hover': {
-                    background: 'linear-gradient(135deg, #047857 0%, #1d4ed8 50%, #4338ca 100%)',
+                    background: 'linear-gradient(135deg, #1e3a8a 0%, #047857 50%, #1e3a8a 100%)',
                     transform: 'translateY(-2px)',
-                    boxShadow: '0 6px 20px rgba(37, 99, 235, 0.6)',
+                    boxShadow: '0 6px 20px rgba(30, 58, 138, 0.4)',
                   },
                   '&:active': {
                     transform: 'translateY(0)',
                   },
                   '&:disabled': {
-                    background: 'linear-gradient(135deg, #059669 0%, #2563eb 50%, #4f46e5 100%)',
+                    background: 'linear-gradient(135deg, #1e40af 0%, #059669 50%, #1e40af 100%)',
                     opacity: 0.7,
                   },
                 }}
@@ -455,12 +472,12 @@ export const RegisterPage = () => {
               </Button>
             </Stack>
 
-            <Divider sx={{ my: 1, borderColor: 'rgba(75, 85, 99, 0.3)' }}>
+            <Divider sx={{ my: 1, borderColor: 'rgba(148, 163, 184, 0.3)' }}>
               <Typography 
                 variant="body2" 
                 sx={{ 
                   px: 2,
-                  color: 'rgba(209, 213, 219, 0.6)',
+                  color: 'rgba(226, 232, 240, 0.7)',
                 }}
               >
                 veya
@@ -471,7 +488,7 @@ export const RegisterPage = () => {
               textAlign="center" 
               sx={{ 
                 fontSize: '0.95rem',
-                color: 'rgba(209, 213, 219, 0.8)',
+                color: 'rgba(226, 232, 240, 0.9)',
               }}
             >
               Zaten hesabınız var mı?{' '}
@@ -480,11 +497,11 @@ export const RegisterPage = () => {
                 to="/login"
                 underline="hover"
                 sx={{
-                  color: '#3b82f6',
+                  color: '#60a5fa',
                   fontWeight: 700,
                   transition: 'all 0.2s ease',
                   '&:hover': {
-                    color: '#6366f1',
+                    color: '#34d399',
                     transform: 'translateX(2px)',
                   },
                 }}

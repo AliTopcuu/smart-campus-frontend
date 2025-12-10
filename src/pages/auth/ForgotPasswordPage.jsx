@@ -11,7 +11,6 @@ import {
   Typography,
   Paper,
   Divider,
-  alpha,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { forgotPasswordSchema } from '@/utils/validationSchemas';
@@ -47,35 +46,42 @@ export const ForgotPasswordPage = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #065f46 0%, #1e3a8a 50%, #312e81 100%)',
+        background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1e293b 100%)',
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         py: 4,
         overflow: 'hidden',
-        '&::before': {
-          content: '""',
+      }}
+    >
+      {/* Gradient overlay */}
+      <Box
+        sx={{
           position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%)',
+          background: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 50%)',
           pointerEvents: 'none',
-        },
-      }}
-    >
-      <Container maxWidth="sm" sx={{ position: 'relative', zIndex: 1 }}>
+          zIndex: 1,
+        }}
+      />
+      <Container maxWidth="sm" sx={{ position: 'relative', zIndex: 2 }}>
         <Paper
-          elevation={24}
+          elevation={0}
           sx={{
-            borderRadius: 4,
+            borderRadius: 6,
             p: { xs: 3, sm: 5 },
-            background: 'rgba(17, 24, 39, 0.95)',
-            backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(75, 85, 99, 0.3)',
-            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)',
+            background: 'rgba(30, 41, 59, 0.95)',
+            backdropFilter: 'blur(40px)',
+            border: '1px solid rgba(148, 163, 184, 0.2)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05)',
+            transition: 'all 0.3s ease',
+            '&:hover': {
+              boxShadow: '0 12px 48px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08)',
+            },
           }}
         >
           <Stack spacing={4}>
@@ -85,12 +91,13 @@ export const ForgotPasswordPage = () => {
                 variant="h3"
                 fontWeight={800}
                 sx={{
-                  background: 'linear-gradient(135deg, #10b981 0%, #3b82f6 50%, #6366f1 100%)',
+                  background: 'linear-gradient(135deg, #1e40af 0%, #059669 50%, #1e40af 100%)',
                   backgroundClip: 'text',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   mb: 1,
                   letterSpacing: '-0.02em',
+                  fontSize: { xs: '2rem', sm: '2.5rem' },
                 }}
               >
                 Şifre Sıfırlama
@@ -100,7 +107,7 @@ export const ForgotPasswordPage = () => {
                 sx={{ 
                   fontSize: '1.1rem', 
                   fontWeight: 500,
-                  color: 'rgba(209, 213, 219, 0.8)',
+                  color: 'rgba(226, 232, 240, 0.9)',
                 }}
               >
                 E-posta adresinize şifre sıfırlama bağlantısı göndereceğiz
@@ -123,37 +130,40 @@ export const ForgotPasswordPage = () => {
                     disabled={isSuccess}
                     sx={{
                       '& .MuiOutlinedInput-root': {
-                        borderRadius: 2,
-                        backgroundColor: alpha('#1f2937', 0.8),
-                        color: '#f3f4f6',
+                        borderRadius: 3,
+                        backgroundColor: 'rgba(51, 65, 85, 0.6)',
+                        color: '#f1f5f9',
                         transition: 'all 0.3s ease',
                         '& fieldset': {
-                          borderColor: 'rgba(75, 85, 99, 0.5)',
+                          borderColor: 'rgba(148, 163, 184, 0.3)',
+                          borderWidth: 2,
                         },
                         '&:hover': {
-                          backgroundColor: '#1f2937',
+                          backgroundColor: 'rgba(51, 65, 85, 0.8)',
                           transform: 'translateY(-2px)',
-                          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+                          boxShadow: '0 4px 12px rgba(59, 130, 246, 0.2)',
                           '& fieldset': {
                             borderColor: 'rgba(59, 130, 246, 0.5)',
                           },
                         },
                         '&.Mui-focused': {
-                          backgroundColor: '#1f2937',
+                          backgroundColor: 'rgba(51, 65, 85, 0.8)',
                           boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
                           '& fieldset': {
                             borderColor: '#3b82f6',
+                            borderWidth: 2,
                           },
                         },
                       },
                       '& .MuiInputLabel-root': {
-                        color: 'rgba(209, 213, 219, 0.7)',
+                        color: 'rgba(226, 232, 240, 0.8)',
+                        fontWeight: 500,
                       },
                       '& .MuiInputLabel-root.Mui-focused': {
-                        color: '#3b82f6',
+                        color: '#60a5fa',
                       },
                       '& .MuiFormHelperText-root': {
-                        color: 'rgba(209, 213, 219, 0.6)',
+                        color: 'rgba(226, 232, 240, 0.7)',
                       },
                     }}
                   />
@@ -167,24 +177,25 @@ export const ForgotPasswordPage = () => {
                 fullWidth
                 disabled={isSubmitting || isSuccess}
                 sx={{
-                  background: 'linear-gradient(135deg, #10b981 0%, #3b82f6 50%, #6366f1 100%)',
-                  borderRadius: 2,
+                  background: 'linear-gradient(135deg, #1e40af 0%, #059669 50%, #1e40af 100%)',
+                  borderRadius: 3,
                   py: 1.5,
                   fontSize: '1rem',
                   fontWeight: 700,
                   textTransform: 'none',
-                  boxShadow: '0 4px 14px rgba(59, 130, 246, 0.4)',
+                  color: 'white',
+                  boxShadow: '0 4px 14px rgba(30, 58, 138, 0.3)',
                   transition: 'all 0.3s ease',
                   '&:hover': {
-                    background: 'linear-gradient(135deg, #059669 0%, #2563eb 50%, #4f46e5 100%)',
+                    background: 'linear-gradient(135deg, #1e3a8a 0%, #047857 50%, #1e3a8a 100%)',
                     transform: 'translateY(-2px)',
-                    boxShadow: '0 6px 20px rgba(59, 130, 246, 0.6)',
+                    boxShadow: '0 6px 20px rgba(30, 58, 138, 0.4)',
                   },
                   '&:active': {
                     transform: 'translateY(0)',
                   },
                   '&:disabled': {
-                    background: 'linear-gradient(135deg, #10b981 0%, #3b82f6 50%, #6366f1 100%)',
+                    background: 'linear-gradient(135deg, #1e40af 0%, #059669 50%, #1e40af 100%)',
                     opacity: 0.7,
                   },
                 }}
@@ -193,12 +204,12 @@ export const ForgotPasswordPage = () => {
               </Button>
             </Stack>
 
-            <Divider sx={{ my: 1, borderColor: 'rgba(75, 85, 99, 0.3)' }}>
+            <Divider sx={{ my: 1, borderColor: 'rgba(148, 163, 184, 0.3)' }}>
               <Typography 
                 variant="body2" 
                 sx={{ 
                   px: 2,
-                  color: 'rgba(209, 213, 219, 0.6)',
+                  color: 'rgba(226, 232, 240, 0.7)',
                 }}
               >
                 veya
@@ -209,7 +220,7 @@ export const ForgotPasswordPage = () => {
               textAlign="center" 
               sx={{ 
                 fontSize: '0.95rem',
-                color: 'rgba(209, 213, 219, 0.8)',
+                color: 'rgba(226, 232, 240, 0.9)',
               }}
             >
               Şifrenizi hatırladınız mı?{' '}
@@ -222,7 +233,7 @@ export const ForgotPasswordPage = () => {
                   fontWeight: 700,
                   transition: 'all 0.2s ease',
                   '&:hover': {
-                    color: '#818cf8',
+                    color: '#34d399',
                     transform: 'translateX(2px)',
                   },
                 }}
