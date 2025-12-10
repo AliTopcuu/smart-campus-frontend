@@ -19,7 +19,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { navItems } from '@/components/navigation/navConfig';
 import { useAuth } from '@/context/AuthContext';
@@ -90,10 +90,20 @@ export const DashboardLayout = () => {
     </Box>
   );
 
-  // Mutlak URL'i oluşturma mantığı
-  const headerAvatarSrc = user?.profilePictureUrl
-    ? `${API_BASE_URL}${user.profilePictureUrl}`
-    : undefined;
+  // Mutlak URL'i oluşturma mantığı - avatarUrl veya profilePictureUrl kontrolü
+  const headerAvatarSrc = useMemo(() => {
+    const avatarUrl = user?.avatarUrl || user?.profilePictureUrl;
+    if (!avatarUrl) return undefined;
+    
+    // Eğer URL zaten tam URL ise (http:// veya https:// ile başlıyorsa) direkt kullan
+    if (avatarUrl.startsWith('http://') || avatarUrl.startsWith('https://')) {
+      // Cache'i bypass etmek için timestamp ekle (sadece avatarUrl değiştiğinde güncellenir)
+      return `${avatarUrl}?t=${Date.now()}`;
+    }
+    
+    // Relative URL ise API_BASE_URL ekle
+    return `${API_BASE_URL}${avatarUrl}?t=${Date.now()}`;
+  }, [user?.avatarUrl, user?.profilePictureUrl]);
 
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh', backgroundColor: 'background.default' }}>
@@ -140,7 +150,12 @@ export const DashboardLayout = () => {
                 {user?.role?.toUpperCase()}
               </Typography>
             </Box>
-            <Avatar src={headerAvatarSrc}>{user?.fullName?.[0] ?? '?'}</Avatar>
+            <Avatar 
+              key={user?.avatarUrl || user?.profilePictureUrl || 'default'}
+              src={headerAvatarSrc}
+            >
+              {user?.fullName?.[0] ?? '?'}
+            </Avatar>
           </Box>
         </Toolbar>
       </AppBar>

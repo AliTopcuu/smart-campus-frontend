@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
@@ -93,10 +93,20 @@ export const ProfilePage = () => {
     }
   };
 
-  // Resim URL'ini oluşturma mantığı
-  const avatarSource = user?.profilePictureUrl
-    ? `${API_BASE_URL}${user.profilePictureUrl}`
-    : undefined;
+  // Resim URL'ini oluşturma mantığı - avatarUrl veya profilePictureUrl kontrolü
+  const avatarSource = useMemo(() => {
+    const avatarUrl = user?.avatarUrl || user?.profilePictureUrl;
+    if (!avatarUrl) return undefined;
+    
+    // Eğer URL zaten tam URL ise (http:// veya https:// ile başlıyorsa) direkt kullan
+    if (avatarUrl.startsWith('http://') || avatarUrl.startsWith('https://')) {
+      // Cache'i bypass etmek için timestamp ekle (sadece avatarUrl değiştiğinde güncellenir)
+      return `${avatarUrl}?t=${Date.now()}`;
+    }
+    
+    // Relative URL ise API_BASE_URL ekle
+    return `${API_BASE_URL}${avatarUrl}?t=${Date.now()}`;
+  }, [user?.avatarUrl, user?.profilePictureUrl]);
 
   return (
     <Stack spacing={3}>
@@ -106,6 +116,7 @@ export const ProfilePage = () => {
             <Grid item xs={12} md={4}>
               <Stack alignItems="center" spacing={2}>
                 <Avatar
+                  key={user?.avatarUrl || user?.profilePictureUrl || 'default'}
                   src={avatarSource}
                   sx={{ width: 120, height: 120 }}
                 >
