@@ -9,6 +9,7 @@
     "lint": "eslint . --ext js,jsx --max-warnings=0",
     "format": "prettier --write .",
     "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",
     "preview": "vite preview",
     "prepare": "husky install"
@@ -49,6 +50,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "husky": "^9.1.7",
+    "jsdom": "^27.3.0",
     "msw": "^2.12.4",
     "prettier": "^3.7.4",
     "typescript": "~5.9.3",

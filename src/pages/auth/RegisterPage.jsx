@@ -20,7 +20,6 @@ import {
   Divider,
   alpha,
 } from '@mui/material';
-import Grid from '@mui/material/Grid';
 import { Link, useNavigate } from 'react-router-dom';
 import { registerSchema } from '@/utils/validationSchemas';
 import { useAuth } from '@/context/AuthContext';
@@ -214,41 +213,37 @@ export const RegisterPage = () => {
 
             {/* Form Section */}
             <Stack component="form" spacing={3} onSubmit={handleSubmit(onSubmit)}>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <Controller
-                    name="fullName"
-                    control={control}
-                    render={({ field }) => (
-                      <TextField
-                        {...field}
-                        label="Ad Soyad"
-                        fullWidth
-                        error={Boolean(errors.fullName)}
-                        helperText={errors.fullName?.message}
-                        sx={commonTextFieldStyles}
-                      />
-                    )}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <Controller
-                    name="email"
-                    control={control}
-                    render={({ field }) => (
-                      <TextField
-                        {...field}
-                        label="E-posta"
-                        type="email"
-                        fullWidth
-                        error={Boolean(errors.email)}
-                        helperText={errors.email?.message}
-                        sx={commonTextFieldStyles}
-                      />
-                    )}
-                  />
-                </Grid>
-                <Grid item xs={12} md={6}>
+              <Stack spacing={2}>
+                <Controller
+                  name="fullName"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="Ad Soyad"
+                      fullWidth
+                      error={Boolean(errors.fullName)}
+                      helperText={errors.fullName?.message}
+                      sx={commonTextFieldStyles}
+                    />
+                  )}
+                />
+                <Controller
+                  name="email"
+                  control={control}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label="E-posta"
+                      type="email"
+                      fullWidth
+                      error={Boolean(errors.email)}
+                      helperText={errors.email?.message}
+                      sx={commonTextFieldStyles}
+                    />
+                  )}
+                />
+                <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
                   <Controller
                     name="password"
                     control={control}
@@ -264,8 +259,6 @@ export const RegisterPage = () => {
                       />
                     )}
                   />
-                </Grid>
-                <Grid item xs={12} md={6}>
                   <Controller
                     name="confirmPassword"
                     control={control}
@@ -281,8 +274,8 @@ export const RegisterPage = () => {
                       />
                     )}
                   />
-                </Grid>
-                <Grid item xs={12} md={6}>
+                </Stack>
+                <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
                   <FormControl fullWidth error={Boolean(errors.role)}>
                     <InputLabel id="role-label" sx={{ color: 'rgba(209, 213, 219, 0.7)' }}>
                       Kullanıcı Tipi
@@ -327,8 +320,6 @@ export const RegisterPage = () => {
                       {errors.role?.message}
                     </FormHelperText>
                   </FormControl>
-                </Grid>
-                <Grid item xs={12} md={6}>
                   <FormControl fullWidth error={Boolean(errors.department)}>
                     <InputLabel id="department-label" sx={{ color: 'rgba(209, 213, 219, 0.7)' }}>
                       Bölüm
@@ -376,26 +367,24 @@ export const RegisterPage = () => {
                       {errors.department?.message}
                     </FormHelperText>
                   </FormControl>
-                </Grid>
+                </Stack>
                 {role === 'student' && (
-                  <Grid item xs={12}>
-                    <Controller
-                      name="studentNumber"
-                      control={control}
-                      render={({ field }) => (
-                        <TextField
-                          {...field}
-                          label="Öğrenci Numarası"
-                          fullWidth
-                          error={Boolean(errors.studentNumber)}
-                          helperText={errors.studentNumber?.message}
-                          sx={commonTextFieldStyles}
-                        />
-                      )}
-                    />
-                  </Grid>
+                  <Controller
+                    name="studentNumber"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        label="Öğrenci Numarası"
+                        fullWidth
+                        error={Boolean(errors.studentNumber)}
+                        helperText={errors.studentNumber?.message}
+                        sx={commonTextFieldStyles}
+                      />
+                    )}
+                  />
                 )}
-              </Grid>
+              </Stack>
 
               <Controller
                 name="termsAccepted"
