@@ -8,6 +8,7 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircleOutlineRounded';
 import MapIcon from '@mui/icons-material/MapRounded';
 import FactCheckIcon from '@mui/icons-material/FactCheckRounded';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedInRounded';
+import CheckCircleIcon from '@mui/icons-material/CheckCircleRounded';
 export const navItems = [
     {
         label: 'Dashboard',
@@ -52,6 +53,12 @@ export const navItems = [
         label: 'Yoklama Durumum',
         path: '/my-attendance',
         icon: MapIcon,
+        roles: ['student'],
+    },
+    {
+        label: 'Yoklamaya Katıl',
+        path: '/attendance/give/test-session-123',
+        icon: CheckCircleIcon,
         roles: ['student'],
     },
     {

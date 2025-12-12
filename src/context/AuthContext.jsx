@@ -22,8 +22,14 @@ export const AuthProvider = ({ children }) => {
         const rememberMe = tokenStorage.isRememberMe();
         tokenStorage.setUser(profile, rememberMe);
       } catch {
-        tokenStorage.clear();
-        setUser(null);
+        // Test modu: Eğer localStorage'da user varsa onu kullan (backend yokken test için)
+        const existingUser = tokenStorage.getUser();
+        if (existingUser) {
+          setUser(existingUser);
+        } else {
+          tokenStorage.clear();
+          setUser(null);
+        }
       } finally {
         setIsInitializing(false);
       }
